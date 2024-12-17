@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog" prefer="system">
+    <system systemId="https://metqa.siged.sep.gob.mx/met-ws/services/TitulosElectronicos.wsdl" uri="src/conf/xml-resources/web-service-references/TitulosElectronicos/wsdl/metqa.siged.sep.gob.mx/met-ws/services/TitulosElectronicos.wsdl"/>
+    <system systemId="https://met.sep.gob.mx/met-ws/services/TitulosElectronicos.wsdl" uri="src/conf/xml-resources/web-service-references/TitulosElectronicos_1/wsdl/met.sep.gob.mx/met-ws/services/TitulosElectronicos.wsdl"/>
+    <system systemId="file:/C:/Program%20Files/WSDL/TitulosElectronicos.wsdl" uri="src/conf/xml-resources/web-service-references/TitulosElectronicos_1/wsdl/TitulosElectronicos.wsdl"/>
+</catalog>
