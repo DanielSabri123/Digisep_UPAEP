@@ -479,6 +479,7 @@ public class HandlerService {
             for (JsonElement e : array) {
                 JsonObject dato = e.getAsJsonObject();
                 respuestServicio = servicio.doPostCalificaciones(dato.get("id").getAsString(), dato.get("mat").getAsString());
+                String da = respuestServicio.toString();
                 if (respuestServicio == null) {
                     return "error¬0¬" + servicio.getRespuestaConsumo().toString() + "¬"
                             + dato.get("id").getAsString() + "_" + dato.get("mat").getAsString();
@@ -491,10 +492,10 @@ public class HandlerService {
                                 + "<br><small>Verifica la información. Si el problema persiste contacta a soporte técnico para obtener más información.</small>¬"
                                 + dato.get("id").getAsString() + "_" + dato.get("mat").getAsString();
                     }
-                    int cont = 0;
+                    
                     for (JsonElement element : respuestServicio) {
                         JsonObject jsonCalificaciones = element.getAsJsonObject();
-                        System.out.println("contador " + cont++);
+                        System.out.println("contador " + contador);
                         calificacion = new Calificacion();
                         alumno = new Alumno();
                         try {
@@ -506,6 +507,12 @@ public class HandlerService {
                             calificacion.setCalificacion(jsonCalificaciones.get("CALIFICACION").getAsString());
                             calificacion.getMateria().setFolio(jsonCalificaciones.get("FORDENAMIENTO").getAsString());
 
+                            if(calificacion.getMateria().getClave().equalsIgnoreCase("MAT100 ")){
+                                System.out.println("Aqui esta");
+                                
+                                System.out.println("h");
+                            }
+                            
                             switch (calificacion.getObservaciones()) {
                                 case "EQUIVALENCIA DE ESTUDIOS":
                                     calificacion.setObservaciones("70");
@@ -577,7 +584,7 @@ public class HandlerService {
                         cstmt.setString(6, calificacion.getID_Ciclo());
                         cstmt.setString(7, calificacion.getObservaciones());
                         cstmt.registerOutParameter(8, java.sql.Types.VARCHAR);
-
+                        System.out.println("EXEC Add_Calificacion '"+alumno.getMatricula()+"', '"+alumno.getID_Carrera()+"','"+calificacion.getMateria().getClave()+"','"+calificacion.getMateria().getFolio()+"', '"+calificacion.getCalificacion()+"', '"+calificacion.getID_Ciclo()+"', '"+calificacion.getObservaciones()+"', null;");
                         cstmt.execute();
 
                         if ((cstmt.getUpdateCount() != -1) && (cstmt.getResultSet() != null)) {
